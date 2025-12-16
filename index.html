@@ -26,21 +26,6 @@
             </header>
 
             <div class="panel__body">
-              <p class="text-muted">
-                Campos do formulário entram na próxima fase.
-              </p>
-            </div>
-          </section>
-
-          <section
-            class="panel panel--transactions"
-            aria-labelledby="transactions-title"
-          >
-            <header class="panel__header">
-              <h2 class="panel__title" id="transactions-title">Transações</h2>
-            </header>
-
-            <div class="panel__body">
               <form class="reimb-form" action="#" method="post">
                 <div class="reimb-form__fields">
                   <div class="field">
@@ -103,6 +88,96 @@
                   Solicitar Aprovação
                 </button>
               </form>
+            </div>
+          </section>
+
+          <section
+            class="panel panel--transactions"
+            aria-labelledby="transactions-title"
+          >
+            <header class="panel__header">
+              <h2 class="panel__title" id="transactions-title">Transações</h2>
+            </header>
+
+            <div class="panel__body transactions">
+              <header class="transactions__top">
+                <nav class="tabs" aria-label="Filtro de transações">
+                  <button
+                    class="tabs__tab tabs__tab--active"
+                    type="button"
+                    aria-pressed="true"
+                  >
+                    Recentes
+                  </button>
+                  <button class="tabs__tab" type="button" aria-pressed="false">
+                    Arquivados
+                  </button>
+                </nav>
+
+                <div
+                  class="transactions__actions"
+                  aria-label="Ações de transações"
+                >
+                  <button
+                    class="icon-btn icon-btn--search"
+                    type="button"
+                    aria-label="Buscar transações"
+                  >
+                    <svg
+                      class="icon-btn__icon"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M16.3 16.3 21 21"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+
+                  <button
+                    class="icon-btn icon-btn--filter"
+                    type="button"
+                    aria-label="Filtrar transações"
+                  >
+                    <svg
+                      class="icon-btn__icon"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4 6h16M7 12h10M10 18h4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </header>
+
+              <section class="tx" aria-label="Lista de transações">
+                <div class="tx__head" aria-hidden="true">
+                  <span class="tx__col">Descrição</span>
+                  <span class="tx__col">Data</span>
+                  <span class="tx__col">Categoria</span>
+                  <span class="tx__col tx__col--right">Valor</span>
+                  <span class="tx__col">Status</span>
+                  <span class="tx__col tx__col--right">Ações</span>
+                </div>
+
+                <p class="text-muted">LISTA</p>
+              </section>
             </div>
           </section>
         </div>
