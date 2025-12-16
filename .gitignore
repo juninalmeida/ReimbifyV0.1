@@ -1,0 +1,21 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Dependências (com Node/JS)
+node_modules/
+
+# Builds (quando tiver bundler tipo Vite/webpack)
+dist/
+build/
+
+# Arquivos de ambiente/senha
+.env
+.env.local
+
+# Configs de editor
+.vscode/
+.idea/
+
+# Logs
+*.log

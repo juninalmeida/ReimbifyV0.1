@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Reimbify</title>
+  </head>
+
+  <body class="page">
+    <div class="bg" aria-hidden="true"></div>
+
+    <main class="app">
+      <div class="container">
+        <div class="app-shell">
+          <section class="panel panel--form" aria-labelledby="form-title">
+            <header class="panel__header">
+              <span class="panel__accent" aria-hidden="true"></span>
+              <h1 class="panel__title" id="form-title">Novo Reembolso</h1>
+            </header>
+
+            <div class="panel__body">
+              <p class="text-muted">
+                Campos do formulário entram na próxima fase.
+              </p>
+            </div>
+          </section>
+
+          <section
+            class="panel panel--transactions"
+            aria-labelledby="transactions-title"
+          >
+            <header class="panel__header">
+              <h2 class="panel__title" id="transactions-title">Transações</h2>
+            </header>
+
+            <div class="panel__body">
+              <p class="text-muted">Tabs + lista entram nas próximas fases.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="./scripts.js" defer></script>
+  </body>
+</html>
