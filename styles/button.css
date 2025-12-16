@@ -1,0 +1,37 @@
+.btn {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  padding: clamp(0.9rem, 0.75rem + 0.7vw, 1.2rem);
+  font-size: var(--fs-200);
+  font-weight: 600;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text);
+
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease,
+    background 120ms ease;
+}
+
+.btn:hover {
+  border-color: var(--color-border-strong);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  border-color: rgba(52, 211, 153, 0.22);
+  background: rgba(52, 211, 153, 0.12);
+  color: rgb(167, 243, 208);
+}
+
+.btn--primary:hover {
+  border-color: rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.16);
+}

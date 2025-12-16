@@ -41,7 +41,68 @@
             </header>
 
             <div class="panel__body">
-              <p class="text-muted">Tabs + lista entram nas próximas fases.</p>
+              <form class="reimb-form" action="#" method="post">
+                <div class="reimb-form__fields">
+                  <div class="field">
+                    <label class="field__label" for="amount">Valor (BRL)</label>
+
+                    <div class="field__control field__control--prefix">
+                      <span class="field__prefix" aria-hidden="true">R$</span>
+                      <input
+                        class="field__input"
+                        id="amount"
+                        name="amount"
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        placeholder="0,00"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="field__label" for="category">Categoria</label>
+
+                    <div class="field__control">
+                      <select
+                        class="field__select"
+                        id="category"
+                        name="category"
+                      >
+                        <option value="" selected disabled>Selecione...</option>
+                        <option value="food">Alimentação</option>
+                        <option value="hotel">Hospedagem</option>
+                        <option value="transport">Transporte</option>
+                        <option value="services">Serviços</option>
+                        <option value="other">Outros</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="field__label" for="description"
+                      >Descrição</label
+                    >
+
+                    <div class="field__control">
+                      <textarea
+                        class="field__textarea"
+                        id="description"
+                        name="description"
+                        placeholder="Descreva a despesa..."
+                        rows="4"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  class="btn btn--primary reimb-form__submit"
+                  type="submit"
+                >
+                  Solicitar Aprovação
+                </button>
+              </form>
             </div>
           </section>
         </div>
