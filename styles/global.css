@@ -1,6 +1,6 @@
 :root {
   /* Layout */
-  --container-max: 80rem; 
+  --container-max: 80rem;
   --container-gutter: clamp(1rem, 0.7rem + 1.4vw, 2rem);
 
   /* Tipografia */
@@ -15,7 +15,7 @@
   --fs-400: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
   --fs-500: clamp(1.25rem, 1.1rem + 1vw, 2rem);
 
-  /* Espaçamentos (sempre rem/clamp) */
+  /* Espaçamentos (rem/clamp) */
   --space-1: clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem);
   --space-2: clamp(0.75rem, 0.6rem + 0.6vw, 1rem);
   --space-3: clamp(1rem, 0.8rem + 0.9vw, 1.5rem);
