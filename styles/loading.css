@@ -1,12 +1,23 @@
 .loading-overlay {
+  --loading-accent: var(--color-brand);
+  --loading-bg: var(--color-bg);
+  --loading-surface: var(--color-surface);
+  --loading-line: var(--color-border-strong);
+  --loading-muted: var(--color-muted);
+  --loading-pill: clamp(2rem, 8vw, 999rem);
+
   position: fixed;
   inset: 0;
   z-index: 9999;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #050505;
+
+  padding: var(--container-gutter);
+
+  background-color: var(--loading-bg);
 
   opacity: 1;
   visibility: visible;
@@ -31,8 +42,8 @@
   inset: 0;
   background: radial-gradient(
     circle at center,
-    rgba(52, 211, 153, 0.1) 0%,
-    rgba(10, 10, 10, 0.8) 50%,
+    rgba(52, 211, 153, 0.12) 0%,
+    rgba(10, 10, 10, 0.82) 52%,
     #000 100%
   );
 }
@@ -46,7 +57,7 @@
     transparent 50%,
     rgba(0, 0, 0, 0.2) 50%
   );
-  background-size: 100% 4px;
+  background-size: 100% clamp(0.1875rem, 0.15rem + 0.2vw, 0.25rem);
   opacity: 0.2;
   pointer-events: none;
 }
@@ -54,9 +65,10 @@
 .loading-circuit {
   position: relative;
   z-index: 10;
-  width: 100%;
-  max-width: 800px;
+
+  width: min(50rem, 92vw);
   aspect-ratio: 16 / 9;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +83,7 @@
 }
 
 .circuit-track {
-  stroke: #262626;
+  stroke: var(--loading-line);
   stroke-width: 1;
   fill: none;
 }
@@ -117,54 +129,62 @@
 }
 
 .circuit-node {
-  fill: #262626;
+  fill: var(--loading-line);
 }
 
 .loading-chip {
   position: relative;
   z-index: 20;
+
+  --pin-w: clamp(0.1875rem, 0.16rem + 0.12vw, 0.25rem);
+  --pin-h: clamp(0.375rem, 0.32rem + 0.2vw, 0.5rem);
+  --pin-offset: clamp(0.75rem, 0.6rem + 0.7vw, 1rem);
+  --pin-radius: clamp(0.125rem, 0.1rem + 0.15vw, 0.1875rem);
 }
 
 .chip-pin {
   position: absolute;
-  width: 4px;
-  height: 8px;
-  background: #404040;
+  inline-size: var(--pin-w);
+  block-size: var(--pin-h);
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .chip-pin--left {
-  left: -4px;
-  border-radius: 2px 0 0 2px;
+  inset-inline-start: calc(var(--pin-w) * -1);
+  border-radius: var(--pin-radius) 0 0 var(--pin-radius);
 }
 .chip-pin--right {
-  right: -4px;
-  border-radius: 0 2px 2px 0;
+  inset-inline-end: calc(var(--pin-w) * -1);
+  border-radius: 0 var(--pin-radius) var(--pin-radius) 0;
 }
+
 .chip-pin--top {
-  top: 16px;
+  inset-block-start: var(--pin-offset);
 }
 .chip-pin--middle {
-  top: 50%;
+  inset-block-start: 50%;
   transform: translateY(-50%);
 }
 .chip-pin--bottom {
-  bottom: 16px;
+  inset-block-end: var(--pin-offset);
 }
 
 .chip-card {
-  width: 192px;
-  height: 128px;
+  width: clamp(10rem, 8.5rem + 6vw, 12rem);
+  aspect-ratio: 3 / 2;
+
   background: rgba(23, 23, 23, 0.9);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(clamp(0.6rem, 0.45rem + 0.6vw, 0.85rem));
+
+  border: 1px solid var(--loading-line);
+  border-radius: var(--radius-1);
+  box-shadow: var(--shadow-1);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: var(--space-1);
 
   animation: chip-pulse 3s ease-in-out infinite;
 }
@@ -172,11 +192,12 @@
 @keyframes chip-pulse {
   0%,
   100% {
-    box-shadow: 0 0 20px -5px rgba(52, 211, 153, 0.1);
-    border-color: rgba(52, 211, 153, 0.1);
+    box-shadow: 0 0 clamp(1rem, 0.8rem + 1vw, 1.25rem) rgba(52, 211, 153, 0.12);
+    border-color: rgba(52, 211, 153, 0.12);
   }
   50% {
-    box-shadow: 0 0 40px -5px rgba(52, 211, 153, 0.3);
+    box-shadow: 0 0 clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem)
+      rgba(52, 211, 153, 0.28);
     border-color: rgba(52, 211, 153, 0.4);
   }
 }
@@ -188,17 +209,17 @@
 .chip-icon-wrapper::before {
   content: "";
   position: absolute;
-  inset: -8px;
+  inset: calc(var(--space-1) * -1);
   background: rgba(52, 211, 153, 0.2);
   border-radius: 50%;
-  filter: blur(12px);
+  filter: blur(clamp(0.6rem, 0.45rem + 0.6vw, 0.85rem));
 }
 
 .chip-icon {
   position: relative;
-  width: 32px;
-  height: 32px;
-  color: rgb(52, 211, 153);
+  width: clamp(1.75rem, 1.55rem + 0.8vw, 2rem);
+  height: clamp(1.75rem, 1.55rem + 0.8vw, 2rem);
+  color: var(--loading-accent);
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -218,18 +239,19 @@
 
 .chip-title {
   margin: 0;
-  font-size: 18px;
+  font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
   font-weight: 500;
-  color: rgb(52, 211, 153);
+  color: var(--loading-accent);
   letter-spacing: -0.01em;
-  text-shadow: 0 0 20px rgba(52, 211, 153, 0.5);
+  text-shadow: 0 0 clamp(0.75rem, 0.55rem + 0.8vw, 1.25rem)
+    rgba(52, 211, 153, 0.45);
 }
 
 .chip-subtitle {
-  margin: 4px 0 0 0;
-  font-size: 11px;
+  margin: clamp(0.25rem, 0.18rem + 0.3vw, 0.375rem) 0 0 0;
+  font-size: clamp(0.6875rem, 0.66rem + 0.12vw, 0.75rem);
   font-weight: 400;
-  color: #737373;
+  color: var(--loading-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -238,39 +260,44 @@
   position: absolute;
   display: none;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: var(--space-1);
+
+  padding: clamp(0.375rem, 0.32rem + 0.25vw, 0.5rem)
+    clamp(0.75rem, 0.65rem + 0.4vw, 1rem);
+
   background: rgba(23, 23, 23, 0.5);
-  border: 1px solid #262626;
-  border-radius: 4px;
-  backdrop-filter: blur(8px);
+  border: 1px solid var(--loading-line);
+
+  border-radius: clamp(0.25rem, 0.22rem + 0.2vw, 0.375rem);
+  backdrop-filter: blur(clamp(0.4rem, 0.3rem + 0.4vw, 0.6rem));
+
   animation: pulse 2s ease-in-out infinite;
 }
 
 .floating-label--left {
   top: 25%;
-  left: 40px;
+  left: clamp(1.5rem, 1rem + 2vw, 2.5rem);
 }
 
 .floating-label--right {
   bottom: 25%;
-  right: 40px;
+  right: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   animation-delay: 0.7s;
 }
 
 .floating-label__icon {
-  width: 12px;
-  height: 12px;
-  color: rgb(52, 211, 153);
+  width: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  height: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  color: var(--loading-accent);
 }
 
 .floating-label__text {
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: #a3a3a3;
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  color: var(--loading-muted);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .floating-label {
     display: flex;
   }
@@ -278,50 +305,62 @@
 
 .loading-progress {
   position: absolute;
-  bottom: 48px;
-  width: 256px;
-}
+  bottom: clamp(2rem, 1.4rem + 2vw, 3rem);
 
-@media (min-width: 768px) {
-  .loading-progress {
-    width: 320px;
-  }
+  width: min(clamp(16rem, 14rem + 6vw, 20rem), 90vw);
 }
 
 .progress-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-1);
 }
 
 .progress-label,
 .progress-value {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: clamp(0.6875rem, 0.66rem + 0.12vw, 0.75rem);
 }
 
 .progress-label {
-  color: #a3a3a3;
+  color: var(--loading-muted);
 }
 
 .progress-value {
-  color: rgb(52, 211, 153);
+  color: var(--loading-accent);
 }
 
 .progress-track {
-  height: 2px;
+  height: clamp(0.125rem, 0.1rem + 0.1vw, 0.1875rem);
   width: 100%;
-  background: #262626;
-  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: var(--loading-pill);
   overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
-  background: rgb(52, 211, 153);
-  box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
-  border-radius: 9999px;
+  background: var(--loading-accent);
+  box-shadow: 0 0 clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem) rgba(52, 211, 153, 0.5);
+  border-radius: var(--loading-pill);
   width: 0%;
   transition: width 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-overlay {
+    transition: none;
+  }
+
+  .circuit-line,
+  .chip-card,
+  .chip-icon,
+  .floating-label {
+    animation: none;
+  }
+
+  .progress-bar {
+    transition: none;
+  }
 }

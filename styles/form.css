@@ -74,3 +74,196 @@
 .field__textarea::placeholder {
   color: rgba(156, 163, 175, 0.55);
 }
+
+.field__select {
+  color-scheme: dark;
+  cursor: pointer;
+
+  padding-inline-end: clamp(2.25rem, 2rem + 1vw, 2.75rem);
+}
+
+.field__select option {
+  background-color: var(--color-surface-solid);
+  color: var(--color-text);
+}
+
+.field__select option:disabled {
+  color: rgba(156, 163, 175, 0.7);
+}
+
+.field__control:has(.field__select) {
+  position: relative;
+}
+
+.field__control:has(.field__select)::after {
+  content: "";
+  position: absolute;
+
+  inset-inline-end: clamp(0.9rem, 0.8rem + 0.4vw, 1.1rem);
+  inset-block-start: 50%;
+  translate: 0 -50%;
+
+  inline-size: clamp(0.55rem, 0.5rem + 0.2vw, 0.7rem);
+  aspect-ratio: 1 / 1;
+
+  border-inline-end: var(--stroke-2) solid rgba(229, 231, 235, 0.55);
+  border-block-end: var(--stroke-2) solid rgba(229, 231, 235, 0.55);
+  rotate: 45deg;
+
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.field__control--select {
+  padding: 0;
+}
+
+.select {
+  position: relative;
+  width: 100%;
+}
+
+.select__trigger {
+  list-style: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+
+  padding: var(--space-2) var(--space-3);
+
+  border-radius: var(--radius-2);
+  background: transparent;
+  color: var(--color-text);
+}
+
+.select__trigger::-webkit-details-marker {
+  display: none;
+}
+
+.select__value {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--space-2);
+}
+
+.select__value-item {
+  display: none;
+}
+
+.select__chevron {
+  inline-size: clamp(0.55rem, 0.5rem + 0.2vw, 0.7rem);
+  aspect-ratio: 1 / 1;
+
+  border-inline-end: var(--stroke-2) solid rgba(229, 231, 235, 0.55);
+  border-block-end: var(--stroke-2) solid rgba(229, 231, 235, 0.55);
+  rotate: 45deg;
+
+  opacity: 0.9;
+  flex: 0 0 auto;
+}
+
+.select[open] .select__chevron {
+  rotate: 225deg;
+}
+
+.select__panel {
+  position: absolute;
+  z-index: 20;
+
+  inset-inline: 0;
+  inset-block-start: calc(100% + var(--space2));
+
+  margin-top: 0;
+
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(clamp(0.6rem, 0.45rem + 0.6vw, 0.85rem));
+
+  border: var(--stroke-1) solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-2);
+
+  padding: var(--space-2);
+  max-height: clamp(10rem, 9rem + 4vw, 13rem);
+  overflow: auto;
+
+  display: grid;
+  gap: var(--space-1);
+}
+
+.select[open] .select__panel {
+  transform-origin: top;
+  animation: select-panel-in 160ms ease-out;
+}
+
+@keyframes select-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(clamp(-0.25rem, -0.2rem + -0.2vw, -0.125rem))
+      scaleY(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select[open] .select__panel {
+    animation: none;
+  }
+}
+
+.select__option {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  padding: clamp(0.625rem, 0.55rem + 0.3vw, 0.75rem)
+    clamp(0.75rem, 0.65rem + 0.4vw, 1rem);
+
+  border-radius: var(--radius-1);
+  color: var(--color-text);
+  transition: background 0.2s ease;
+}
+
+.select__radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.select__option:hover {
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.select__option:has(.select__radio:checked) {
+  background: rgba(52, 211, 153, 0.18);
+  box-shadow: inset 0 0 0 var(--stroke-1) rgba(52, 211, 153, 0.28);
+}
+
+.select:has(.select__radio[value=""]:checked) .select__value-placeholder {
+  display: inline;
+}
+
+.select:has(.select__radio:not([value=""]):checked) .select__value-placeholder {
+  display: none;
+}
+
+.select:has(.select__radio[value="Alimentação"]:checked)
+  .select__value-item[data-value="Alimentação"],
+.select:has(.select__radio[value="Hospedagem"]:checked)
+  .select__value-item[data-value="Hospedagem"],
+.select:has(.select__radio[value="Transporte"]:checked)
+  .select__value-item[data-value="Transporte"],
+.select:has(.select__radio[value="Serviços"]:checked)
+  .select__value-item[data-value="Serviços"],
+.select:has(.select__radio[value="Outros"]:checked)
+  .select__value-item[data-value="Outros"] {
+  display: inline;
+}

@@ -224,19 +224,112 @@
                   <div class="field">
                     <label class="field__label" for="category">Categoria</label>
 
-                    <div class="field__control">
-                      <select
-                        class="field__select"
-                        id="category"
-                        name="category"
-                      >
-                        <option value="" selected disabled>Selecione...</option>
-                        <option value="food">Alimentação</option>
-                        <option value="hotel">Hospedagem</option>
-                        <option value="transport">Transporte</option>
-                        <option value="services">Serviços</option>
-                        <option value="other">Outros</option>
-                      </select>
+                    <div class="field__control field__control--select">
+                      <details class="select" aria-label="Categoria">
+                        <summary class="select__trigger">
+                          <span class="select__value">
+                            <span class="select__value-placeholder"
+                              >Selecione...</span
+                            >
+
+                            <span
+                              class="select__value-item"
+                              data-value="Alimentação"
+                              >Alimentação</span
+                            >
+                            <span
+                              class="select__value-item"
+                              data-value="Hospedagem"
+                              >Hospedagem</span
+                            >
+                            <span
+                              class="select__value-item"
+                              data-value="Transporte"
+                              >Transporte</span
+                            >
+                            <span
+                              class="select__value-item"
+                              data-value="Serviços"
+                              >Serviços</span
+                            >
+                            <span class="select__value-item" data-value="Outros"
+                              >Outros</span
+                            >
+                          </span>
+
+                          <span
+                            class="select__chevron"
+                            aria-hidden="true"
+                          ></span>
+                        </summary>
+
+                        <div
+                          class="select__panel"
+                          role="listbox"
+                          aria-label="Opções de categoria"
+                        >
+                          <label class="select__option">
+                            <input
+                              class="select__radio"
+                              type="radio"
+                              name="category"
+                              value=""
+                              checked
+                            />
+                            <span>Selecione...</span>
+                          </label>
+
+                          <label class="select__option">
+                            <input
+                              class="select__radio"
+                              type="radio"
+                              name="category"
+                              value="Alimentação"
+                            />
+                            <span>Alimentação</span>
+                          </label>
+
+                          <label class="select__option">
+                            <input
+                              class="select__radio"
+                              type="radio"
+                              name="category"
+                              value="Hospedagem"
+                            />
+                            <span>Hospedagem</span>
+                          </label>
+
+                          <label class="select__option">
+                            <input
+                              class="select__radio"
+                              type="radio"
+                              name="category"
+                              value="Transporte"
+                            />
+                            <span>Transporte</span>
+                          </label>
+
+                          <label class="select__option">
+                            <input
+                              class="select__radio"
+                              type="radio"
+                              name="category"
+                              value="Serviços"
+                            />
+                            <span>Serviços</span>
+                          </label>
+
+                          <label class="select__option">
+                            <input
+                              class="select__radio"
+                              type="radio"
+                              name="category"
+                              value="Outros"
+                            />
+                            <span>Outros</span>
+                          </label>
+                        </div>
+                      </details>
                     </div>
                   </div>
 
@@ -383,7 +476,7 @@
                       data-tx-id="tx-001"
                     >
                       <h3 class="tx-row__desc" data-field="description">
-                        Uber
+                        Uber| Corrida com o cliente
                       </h3>
 
                       <time
@@ -411,7 +504,7 @@
                   <li class="tx-list__item">
                     <article class="tx-row tx-row--pending" data-tx-id="tx-002">
                       <h3 class="tx-row__desc" data-field="description">
-                        Almoço
+                        Almoço| Com cliente
                       </h3>
                       <time
                         class="tx-row__date"
@@ -437,7 +530,7 @@
                       data-tx-id="tx-003"
                     >
                       <h3 class="tx-row__desc" data-field="description">
-                        Hotel
+                        Hotel| Serviço especial
                       </h3>
                       <time
                         class="tx-row__date"
