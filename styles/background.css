@@ -3,43 +3,28 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-
-  background: radial-gradient(
-      120% 80% at 20% 10%,
-      rgba(52, 211, 153, 0.1),
-      transparent 55%
-    ),
-    radial-gradient(
-      90% 70% at 85% 35%,
-      rgba(52, 211, 153, 0.08),
-      transparent 60%
-    ),
-    radial-gradient(
-      110% 80% at 60% 90%,
-      rgba(52, 211, 153, 0.06),
-      transparent 60%
-    ),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent 30%);
+  overflow: hidden;
 }
 
 .bg::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -20%;
 
-  opacity: 0.12;
-
-  background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
+  background: radial-gradient(
+      circle at 50% 40%,
+      rgba(52, 211, 153, 0.12) 0%,
+      rgba(10, 10, 10, 0.82) 55%,
+      #000 100%
     ),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    radial-gradient(
+      circle at 20% 60%,
+      rgba(255, 255, 255, 0.04) 0%,
+      transparent 55%
+    );
 
-  background-size: clamp(1.75rem, 1.25rem + 2vw, 3rem)
-    clamp(1.75rem, 1.25rem + 2vw, 3rem);
-
-  animation: bg-grid-drift 18s linear infinite;
+  filter: blur(clamp(0.2rem, 0.15rem + 0.2vw, 0.35rem));
+  opacity: 0.95;
 }
 
 .bg::after {
@@ -47,24 +32,95 @@
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(
-      circle at center,
-      transparent 35%,
-      rgba(0, 0, 0, 0.75) 85%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.65),
-      transparent 25%,
-      rgba(0, 0, 0, 0.75)
-    );
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.22) 50%
+  );
+  background-size: 100% clamp(0.2rem, 0.16rem + 0.2vw, 0.28rem);
+  opacity: 0.14;
 }
 
-@keyframes bg-grid-drift {
-  from {
-    background-position: 0 0, 0 0;
+.bg__circuit {
+  position: absolute;
+  inset-block: 0;
+
+  width: clamp(14rem, 18vw, 22rem);
+  opacity: 0.55;
+
+  filter: drop-shadow(
+    0 0 clamp(0.6rem, 0.5rem + 0.4vw, 0.9rem) rgba(52, 211, 153, 0.12)
+  );
+}
+
+.bg__circuit--left {
+  inset-inline-start: 0;
+}
+
+.bg__circuit--right {
+  inset-inline-end: 0;
+  transform: scaleX(-1);
+}
+
+.bg__track {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+  fill: none;
+}
+
+.bg__line {
+  stroke: url(#bg-line);
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+
+  filter: url(#bg-glow);
+
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  opacity: 0;
+
+  animation: bg-flow 10s ease-in-out infinite;
+}
+
+.bg__line--a {
+  animation-delay: 0s;
+}
+.bg__line--b {
+  animation-delay: 2.2s;
+}
+.bg__line--c {
+  animation-delay: 1.2s;
+}
+.bg__line--d {
+  animation-delay: 3.4s;
+}
+
+@keyframes bg-flow {
+  0% {
+    stroke-dashoffset: 320;
+    opacity: 0;
   }
-  to {
-    background-position: 6rem 4rem, 4rem 6rem;
+  12% {
+    opacity: 0.9;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  100% {
+    stroke-dashoffset: -320;
+    opacity: 0;
+  }
+}
+
+.bg__node {
+  fill: rgba(255, 255, 255, 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg__line {
+    animation: none;
+    opacity: 0.35;
+    stroke-dashoffset: 0;
   }
 }

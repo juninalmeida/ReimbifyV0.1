@@ -14,14 +14,106 @@
   </head>
 
   <body class="page">
+    <div class="bg" aria-hidden="true">
+      <svg
+        class="bg__circuit bg__circuit--left"
+        viewBox="0 0 260 900"
+        preserveAspectRatio="xMinYMin meet"
+      >
+        <defs>
+          <linearGradient id="bg-line" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(52, 211, 153, 0)" />
+            <stop offset="50%" stop-color="rgba(52, 211, 153, 0.85)" />
+            <stop offset="100%" stop-color="rgba(52, 211, 153, 0)" />
+          </linearGradient>
+
+          <filter id="bg-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <path
+          class="bg__track"
+          d="M18 90 H210 V180 H90 V300 H230 V410 H60 V520 H200 V620 H110 V760 H240"
+        />
+        <path
+          class="bg__track"
+          d="M36 140 H160 V240 H42 V360 H190 V460 H82 V580 H220 V700 H70 V820 H200"
+        />
+
+        <path
+          class="bg__line bg__line--a"
+          d="M18 90 H210 V180 H90 V300 H230 V410 H60 V520 H200 V620 H110 V760 H240"
+        />
+        <path
+          class="bg__line bg__line--b"
+          d="M36 140 H160 V240 H42 V360 H190 V460 H82 V580 H220 V700 H70 V820 H200"
+        />
+
+        <circle class="bg__node" cx="18" cy="90" r="3" />
+        <circle class="bg__node" cx="210" cy="180" r="3" />
+        <circle class="bg__node" cx="230" cy="410" r="3" />
+        <circle class="bg__node" cx="200" cy="620" r="3" />
+        <circle class="bg__node" cx="240" cy="760" r="3" />
+      </svg>
+
+      <svg
+        class="bg__circuit bg__circuit--right"
+        viewBox="0 0 260 900"
+        preserveAspectRatio="xMinYMin meet"
+      >
+        <!-- reaproveita os mesmos ids de defs do SVG acima por isolamento de SVG -->
+        <defs>
+          <linearGradient id="bg-line" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(52, 211, 153, 0)" />
+            <stop offset="50%" stop-color="rgba(52, 211, 153, 0.85)" />
+            <stop offset="100%" stop-color="rgba(52, 211, 153, 0)" />
+          </linearGradient>
+
+          <filter id="bg-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <path
+          class="bg__track"
+          d="M18 110 H230 V220 H70 V330 H210 V440 H90 V560 H240 V670 H120 V820 H220"
+        />
+        <path
+          class="bg__track"
+          d="M36 70 H180 V170 H40 V290 H200 V390 H62 V510 H220 V610 H90 V750 H240"
+        />
+
+        <path
+          class="bg__line bg__line--c"
+          d="M18 110 H230 V220 H70 V330 H210 V440 H90 V560 H240 V670 H120 V820 H220"
+        />
+        <path
+          class="bg__line bg__line--d"
+          d="M36 70 H180 V170 H40 V290 H200 V390 H62 V510 H220 V610 H90 V750 H240"
+        />
+
+        <circle class="bg__node" cx="230" cy="220" r="3" />
+        <circle class="bg__node" cx="210" cy="440" r="3" />
+        <circle class="bg__node" cx="240" cy="670" r="3" />
+        <circle class="bg__node" cx="220" cy="820" r="3" />
+      </svg>
+    </div>
+
     <div
       id="loading-overlay"
       class="loading-overlay"
       aria-live="polite"
       aria-busy="true"
     >
-      <div class="loading-bg" aria-hidden="true"></div>
-
       <div class="loading-circuit">
         <svg
           class="circuit-svg"

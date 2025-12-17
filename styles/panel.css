@@ -44,3 +44,47 @@
   flex-direction: column;
   gap: var(--space-2);
 }
+
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .panel__title {
+    display: inline-block;
+
+    background-image: linear-gradient(
+      90deg,
+      rgba(229, 231, 235, 0.92) 0%,
+      rgba(52, 211, 153, 0.92) 48%,
+      rgba(229, 231, 235, 0.92) 100%
+    );
+    background-size: 260% 100%;
+    background-position: 120% 0;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 clamp(0.5rem, 0.4rem + 0.4vw, 0.85rem)
+      rgba(52, 211, 153, 0.14);
+
+    animation: title-sheen 8s ease-in-out infinite;
+  }
+
+  @keyframes title-sheen {
+    0% {
+      background-position: 120% 0;
+    }
+    50% {
+      background-position: -20% 0;
+    }
+    100% {
+      background-position: 120% 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel__title {
+    animation: none;
+  }
+}

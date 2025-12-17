@@ -292,6 +292,44 @@
   margin-top: var(--space-2);
 }
 
+.tx__more.btn--ghost {
+  background-color: rgba(255, 255, 255, 0.02);
+
+  /* brilho sutil que “passa” no hover */
+  background-image: linear-gradient(
+    90deg,
+    rgba(52, 211, 153, 0) 0%,
+    rgba(52, 211, 153, 0.09) 45%,
+    rgba(52, 211, 153, 0) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 120% 0;
+
+  transition: transform 160ms ease, border-color 160ms ease,
+    background-color 160ms ease, box-shadow 160ms ease,
+    background-position 420ms ease;
+}
+
+.tx__more.btn--ghost:hover {
+  border-color: rgba(52, 211, 153, 0.18);
+  background-color: rgba(255, 255, 255, 0.04);
+  background-position: -20% 0;
+
+  transform: translateY(-0.0625rem);
+  box-shadow: var(--ring-1),
+    0 0 clamp(0.6rem, 0.5rem + 0.5vw, 0.9rem) rgba(52, 211, 153, 0.08);
+}
+
+.tx__more.btn--ghost:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx__more.btn--ghost {
+    transition: none;
+  }
+}
+
 @media (min-width: 60rem) {
   .tx__more {
     width: auto;
