@@ -35,3 +35,12 @@
   border-color: rgba(52, 211, 153, 0.35);
   background: rgba(52, 211, 153, 0.16);
 }
+
+.btn--ghost {
+  background: transparent;
+}
+
+.icon-btn--sm {
+  inline-size: clamp(2.05rem, 1.95rem + 0.5vw, 2.35rem);
+  aspect-ratio: 1 / 1;
+}

@@ -119,9 +119,9 @@
                   aria-label="Ações de transações"
                 >
                   <button
-                    class="icon-btn icon-btn--search"
+                    class="icon-btn icon-btn--archive"
                     type="button"
-                    aria-label="Buscar transações"
+                    aria-label="Arquivar selecionados"
                   >
                     <svg
                       class="icon-btn__icon"
@@ -129,13 +129,26 @@
                       aria-hidden="true"
                     >
                       <path
-                        d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                        d="M4 7h16v13H4z"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
                       />
                       <path
-                        d="M16.3 16.3 21 21"
+                        d="M8 4h8v3H8z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M12 11v6"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M9.5 14.5 12 17l2.5-2.5"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
@@ -145,9 +158,9 @@
                   </button>
 
                   <button
-                    class="icon-btn icon-btn--filter"
+                    class="icon-btn icon-btn--delete"
                     type="button"
-                    aria-label="Filtrar transações"
+                    aria-label="Excluir selecionados"
                   >
                     <svg
                       class="icon-btn__icon"
@@ -155,11 +168,23 @@
                       aria-hidden="true"
                     >
                       <path
-                        d="M4 6h16M7 12h10M10 18h4"
+                        d="M6 7h12"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
                         stroke-linecap="round"
+                      />
+                      <path
+                        d="M9 7V5h6v2"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M8 7l1 14h6l1-14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
                       />
                     </svg>
                   </button>
@@ -171,12 +196,99 @@
                   <span class="tx__col">Descrição</span>
                   <span class="tx__col">Data</span>
                   <span class="tx__col">Categoria</span>
-                  <span class="tx__col tx__col--right">Valor</span>
+                  <span class="tx__col">Valor</span>
                   <span class="tx__col">Status</span>
-                  <span class="tx__col tx__col--right">Ações</span>
                 </div>
 
-                <p class="text-muted">LISTA</p>
+                <ul class="tx-list" role="list">
+                  <li class="tx-list__item">
+                    <article
+                      class="tx-row tx-row--approved"
+                      data-tx-id="tx-001"
+                    >
+                      <h3 class="tx-row__desc" data-field="description">
+                        Uber
+                      </h3>
+
+                      <time
+                        class="tx-row__date"
+                        data-field="date"
+                        datetime="2025-08-12"
+                      >
+                        12/08/2025
+                      </time>
+
+                      <p class="tx-row__category" data-field="category">
+                        Transporte
+                      </p>
+
+                      <p class="tx-row__amount" data-field="amount">R$ 48,90</p>
+
+                      <div class="tx-row__status">
+                        <span class="badge badge--approved" data-field="status"
+                          >Aprovado</span
+                        >
+                      </div>
+                    </article>
+                  </li>
+
+                  <li class="tx-list__item">
+                    <article class="tx-row tx-row--pending" data-tx-id="tx-002">
+                      <h3 class="tx-row__desc" data-field="description">
+                        Almoço
+                      </h3>
+                      <time
+                        class="tx-row__date"
+                        data-field="date"
+                        datetime="2025-08-10"
+                        >10/08/2025</time
+                      >
+                      <p class="tx-row__category" data-field="category">
+                        Alimentação
+                      </p>
+                      <p class="tx-row__amount" data-field="amount">R$ 89,00</p>
+                      <div class="tx-row__status">
+                        <span class="badge badge--pending" data-field="status"
+                          >Pendente</span
+                        >
+                      </div>
+                    </article>
+                  </li>
+
+                  <li class="tx-list__item">
+                    <article
+                      class="tx-row tx-row--processing"
+                      data-tx-id="tx-003"
+                    >
+                      <h3 class="tx-row__desc" data-field="description">
+                        Hotel
+                      </h3>
+                      <time
+                        class="tx-row__date"
+                        data-field="date"
+                        datetime="2025-08-06"
+                        >06/08/2025</time
+                      >
+                      <p class="tx-row__category" data-field="category">
+                        Hospedagem
+                      </p>
+                      <p class="tx-row__amount" data-field="amount">
+                        R$ 420,00
+                      </p>
+                      <div class="tx-row__status">
+                        <span
+                          class="badge badge--processing"
+                          data-field="status"
+                          >Em análise</span
+                        >
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+
+                <button class="btn btn--ghost tx__more" type="button">
+                  Carregar mais
+                </button>
               </section>
             </div>
           </section>
