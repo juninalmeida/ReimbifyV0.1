@@ -14,6 +14,182 @@
   </head>
 
   <body class="page">
+    <div
+      id="loading-overlay"
+      class="loading-overlay"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <div class="loading-bg" aria-hidden="true"></div>
+
+      <div class="loading-circuit">
+        <svg
+          class="circuit-svg"
+          viewBox="0 0 800 450"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="line-gradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop offset="0%" stop-color="rgba(52, 211, 153, 0)" />
+              <stop offset="50%" stop-color="#34d399" />
+              <stop offset="100%" stop-color="rgba(52, 211, 153, 0)" />
+            </linearGradient>
+
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          <g class="circuit-tracks">
+            <path class="circuit-track" d="M150 150 H280 L320 200 H350" />
+            <path class="circuit-track" d="M100 225 H350" />
+            <path class="circuit-track" d="M150 300 H280 L320 250 H350" />
+
+            <path class="circuit-track" d="M650 150 H520 L480 200 H450" />
+            <path class="circuit-track" d="M700 225 H450" />
+            <path class="circuit-track" d="M650 300 H520 L480 250 H450" />
+          </g>
+
+          <g class="circuit-lines">
+            <path
+              class="circuit-line circuit-line--delay-1"
+              d="M150 150 H280 L320 200 H350"
+            />
+            <path
+              class="circuit-line circuit-line--delay-2"
+              d="M100 225 H350"
+            />
+            <path
+              class="circuit-line circuit-line--delay-3"
+              d="M150 300 H280 L320 250 H350"
+            />
+
+            <path
+              class="circuit-line circuit-line--delay-2"
+              d="M650 150 H520 L480 200 H450"
+            />
+            <path
+              class="circuit-line circuit-line--delay-3"
+              d="M700 225 H450"
+            />
+            <path
+              class="circuit-line circuit-line--delay-1"
+              d="M650 300 H520 L480 250 H450"
+            />
+          </g>
+
+          <g class="circuit-nodes">
+            <circle class="circuit-node" cx="150" cy="150" r="3" />
+            <circle class="circuit-node" cx="100" cy="225" r="3" />
+            <circle class="circuit-node" cx="150" cy="300" r="3" />
+            <circle class="circuit-node" cx="650" cy="150" r="3" />
+            <circle class="circuit-node" cx="700" cy="225" r="3" />
+            <circle class="circuit-node" cx="650" cy="300" r="3" />
+          </g>
+        </svg>
+
+        <div class="loading-chip">
+          <span
+            class="chip-pin chip-pin--left chip-pin--top"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="chip-pin chip-pin--left chip-pin--middle"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="chip-pin chip-pin--left chip-pin--bottom"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="chip-pin chip-pin--right chip-pin--top"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="chip-pin chip-pin--right chip-pin--middle"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="chip-pin chip-pin--right chip-pin--bottom"
+            aria-hidden="true"
+          ></span>
+
+          <div class="chip-card">
+            <div class="chip-icon-wrapper">
+              <svg
+                class="chip-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                <line x1="7" y1="12" x2="17" y2="12" />
+              </svg>
+            </div>
+            <div class="chip-text">
+              <p class="chip-title">Processando</p>
+              <p class="chip-subtitle">Sistema Reimbify V0.1</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-label floating-label--left" aria-hidden="true">
+          <svg
+            class="floating-label__icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <path d="m9 15 2 2 4-4" />
+          </svg>
+          <span class="floating-label__text">Validando dados</span>
+        </div>
+
+        <div class="floating-label floating-label--right" aria-hidden="true">
+          <svg
+            class="floating-label__icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+          <span class="floating-label__text">Verificado</span>
+        </div>
+      </div>
+
+      <div class="loading-progress">
+        <div class="progress-header">
+          <span class="progress-label">PROCESSANDO SOLICITAÇÃO</span>
+          <span class="progress-value" id="progress-percent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="bg" aria-hidden="true"></div>
 
     <main class="app">
@@ -26,7 +202,7 @@
             </header>
 
             <div class="panel__body">
-              <form class="reimb-form" action="#" method="post">
+              <form id="reimb-form" class="reimb-form" action="#" method="post">
                 <div class="reimb-form__fields">
                   <div class="field">
                     <label class="field__label" for="amount">Valor (BRL)</label>
@@ -200,7 +376,7 @@
                   <span class="tx__col">Status</span>
                 </div>
 
-                <ul class="tx-list" role="list">
+                <ul class="tx-list" role="list" id="tx-list">
                   <li class="tx-list__item">
                     <article
                       class="tx-row tx-row--approved"
