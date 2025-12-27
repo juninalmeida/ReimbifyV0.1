@@ -47,7 +47,7 @@ const form = document.getElementById("reimb-form");
 const selectDetails = document.querySelector(".select");
 const categoryOptions = document.querySelectorAll('input[name="category"]');
 const transactionList = document.getElementById("tx-list");
-const tabs = document.querySelectorAll("tabs__tab");
+const tabButtons = document.querySelectorAll(".tabs__tab");
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
@@ -103,8 +103,8 @@ function addTransactionToDOM(transactionData) {
 
   li.querySelector(".tx-row__category").textContent = transactionData.category;
 
-  li.querySelector(".tx-row__amount").textContent =
-    "R$ " + transactionData.amount;
+  const formattedAmount = formatCurrencyBRL(transactionData.amount);
+  li.querySelector(".tx-row__amount").textContent = formattedAmount;
 
   const today = new Date().toLocaleDateString("pt-BR");
 
@@ -112,8 +112,6 @@ function addTransactionToDOM(transactionData) {
 
   transactionList.prepend(li);
 }
-
-const tabButtons = document.querySelectorAll(".tabs__tab");
 
 tabButtons.forEach(function (btn) {
   btn.addEventListener("click", function (ev) {
@@ -128,3 +126,12 @@ tabButtons.forEach(function (btn) {
     clickedBtn.setAttribute("aria-pressed", "true");
   });
 });
+
+function formatCurrencyBRL(value) {
+  const number = Number(value);
+
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(number);
+}
