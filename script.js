@@ -47,6 +47,7 @@ const form = document.getElementById("reimb-form");
 const selectDetails = document.querySelector(".select");
 const categoryOptions = document.querySelectorAll('input[name="category"]');
 const transactionList = document.getElementById("tx-list");
+const tabs = document.querySelectorAll("tabs__tab");
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
@@ -111,3 +112,19 @@ function addTransactionToDOM(transactionData) {
 
   transactionList.prepend(li);
 }
+
+const tabButtons = document.querySelectorAll(".tabs__tab");
+
+tabButtons.forEach(function (btn) {
+  btn.addEventListener("click", function (ev) {
+    tabButtons.forEach(function (t) {
+      t.classList.remove("tabs__tab--active");
+      t.setAttribute("aria-pressed", "false");
+    });
+
+    const clickedBtn = ev.currentTarget;
+
+    clickedBtn.classList.add("tabs__tab--active");
+    clickedBtn.setAttribute("aria-pressed", "true");
+  });
+});
