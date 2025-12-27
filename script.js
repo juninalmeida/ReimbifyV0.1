@@ -48,6 +48,10 @@ const selectDetails = document.querySelector(".select");
 const categoryOptions = document.querySelectorAll('input[name="category"]');
 const transactionList = document.getElementById("tx-list");
 const tabButtons = document.querySelectorAll(".tabs__tab");
+const deleteButton = document.querySelector(".icon-btn--delete");
+const modalOverlay = document.getElementById("delete-modal");
+const btnCancel = document.getElementById("btn-cancel-delete");
+const btnConfirm = document.getElementById("btn-confirm-delete");
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
@@ -135,3 +139,39 @@ function formatCurrencyBRL(value) {
     currency: "BRL",
   }).format(number);
 }
+
+let isDeleteMode = false;
+deleteButton.addEventListener("click", function () {
+  isDeleteMode = !isDeleteMode;
+
+  deleteButton.classList.toggle("icon-btn--delete-active");
+
+  transactionList.classList.toggle("mode-delete");
+});
+
+let itemToDelete = null;
+transactionList.addEventListener("click", function (ev) {
+  if (!isDeleteMode) return;
+
+  const card = ev.target.closest(".tx-list__item");
+  if (!card) return;
+
+  itemToDelete = card;
+  modalOverlay.classList.remove("hidden");
+});
+
+btnCancel.addEventListener("click", function () {
+  console.log("Cancelando...");
+
+  modalOverlay.classList.add("hidden");
+
+  itemToDelete = null;
+});
+
+btnConfirm.addEventListener("click", function () {
+  if (itemToDelete) {
+    itemToDelete.remove();
+    itemToDelete = null;
+  }
+  modalOverlay.classList.add("hidden");
+});
