@@ -70,3 +70,12 @@ form.addEventListener("submit", function (ev) {
     category,
   });
 });
+
+const selectDetails = document.querySelector(".select");
+const categoryOptions = document.querySelectorAll('input[name="category"]');
+
+categoryOptions.forEach(function (radio) {
+  radio.addEventListener("click", function () {
+    selectDetails.removeAttribute("open");
+  });
+});
