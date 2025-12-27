@@ -50,13 +50,34 @@ const transactionList = document.getElementById("tx-list");
 const tabButtons = document.querySelectorAll(".tabs__tab");
 const deleteButton = document.querySelector(".icon-btn--delete");
 const modalOverlay = document.getElementById("delete-modal");
+const modalTitle = document.getElementById("modal-title");
+const modalDesc = document.getElementById("modal-desc");
 const btnCancel = document.getElementById("btn-cancel-delete");
 const btnConfirm = document.getElementById("btn-confirm-delete");
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
 
+  const currentRecents = document.querySelectorAll(
+    ".tx-list__item:not(.tx-list__item--archived)"
+  ).length;
+
+  if (currentRecents >= 5) {
+    modalTitle.textContent = "Limite Atingido";
+    modalDesc.textContent =
+      "Você atingiu o limite de 5 solicitações recentes. Exclua ou arquive itens antigos.";
+
+    btnConfirm.style.display = "none";
+
+    btnCancel.textContent = "Entendi";
+
+    modalOverlay.classList.remove("hidden");
+
+    return;
+  }
+
   const amount = document.getElementById("amount").value.trim();
+
   const description = document.getElementById("description").value.trim();
 
   const categoryElement = document.querySelector(
@@ -119,15 +140,32 @@ function addTransactionToDOM(transactionData) {
 
 tabButtons.forEach(function (btn) {
   btn.addEventListener("click", function (ev) {
-    tabButtons.forEach(function (t) {
+    tabButtons.forEach((t) => {
       t.classList.remove("tabs__tab--active");
       t.setAttribute("aria-pressed", "false");
     });
 
     const clickedBtn = ev.currentTarget;
-
     clickedBtn.classList.add("tabs__tab--active");
     clickedBtn.setAttribute("aria-pressed", "true");
+
+    const isArchivedTab = clickedBtn.textContent
+      .trim()
+      .toLowerCase()
+      .includes("arquivados");
+    const allItems = document.querySelectorAll(".tx-list__item");
+
+    allItems.forEach((item) => {
+      const isItemArchived = item.classList.contains("tx-list__item--archived");
+
+      if (isArchivedTab) {
+        if (isItemArchived) item.classList.remove("hidden");
+        else item.classList.add("hidden");
+      } else {
+        if (!isItemArchived) item.classList.remove("hidden");
+        else item.classList.add("hidden");
+      }
+    });
   });
 });
 
@@ -157,6 +195,12 @@ transactionList.addEventListener("click", function (ev) {
   if (!card) return;
 
   itemToDelete = card;
+
+  modalTitle.textContent = "Tem certeza?";
+  modalDesc.textContent = "Essa ação removerá o item permanentemente.";
+  btnConfirm.style.display = "block";
+  btnCancel.textContent = "Cancelar";
+
   modalOverlay.classList.remove("hidden");
 });
 
