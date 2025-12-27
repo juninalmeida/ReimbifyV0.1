@@ -55,6 +55,23 @@ const modalDesc = document.getElementById("modal-desc");
 const btnCancel = document.getElementById("btn-cancel-delete");
 const btnConfirm = document.getElementById("btn-confirm-delete");
 const archiveButton = document.querySelector(".icon-btn--archive");
+const amountInput = document.getElementById("amount");
+
+amountInput.addEventListener("input", function (ev) {
+  const value = ev.target.value.replace(/\D/g, "");
+
+  if (value === "") {
+    ev.target.value = "";
+    return;
+  }
+
+  const numberValue = Number(value) / 100;
+
+  ev.target.value = numberValue.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+});
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
@@ -69,15 +86,15 @@ form.addEventListener("submit", function (ev) {
       "Você atingiu o limite de 5 solicitações recentes. Exclua ou arquive itens antigos.";
 
     btnConfirm.style.display = "none";
-
     btnCancel.textContent = "Entendi";
-
     modalOverlay.classList.remove("hidden");
-
     return;
   }
 
-  const amount = document.getElementById("amount").value.trim();
+  const rawAmount = document.getElementById("amount").value;
+  const amountClean = rawAmount
+    ? Number(rawAmount.replace(/\D/g, "")) / 100
+    : "";
 
   const description = document.getElementById("description").value.trim();
 
@@ -89,20 +106,24 @@ form.addEventListener("submit", function (ev) {
     category = categoryElement.value;
   }
 
-  if (amount === "" || category === "" || description === "") {
+  if (
+    amountClean === "" ||
+    amountClean === 0 ||
+    category === "" ||
+    description === ""
+  ) {
     modalTitle.textContent = "Campos Obrigatórios";
-    modalDesc.textContent = "Por favor, preencha o valor, a descrição e a categoria antes de continuar.";
+    modalDesc.textContent =
+      "Por favor, preencha o valor, a descrição e a categoria antes de continuar.";
 
     btnConfirm.style.display = "none";
-
     btnCancel.textContent = "Entendi";
-
     modalOverlay.classList.remove("hidden");
     return;
   }
 
   addTransactionToDOM({
-    amount,
+    amount: amountClean,
     description,
     category,
   });
