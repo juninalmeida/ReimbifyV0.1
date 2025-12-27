@@ -44,6 +44,9 @@
 })();
 
 const form = document.getElementById("reimb-form");
+const selectDetails = document.querySelector(".select");
+const categoryOptions = document.querySelectorAll('input[name="category"]');
+const transactionList = document.getElementById("tx-list");
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
@@ -64,18 +67,47 @@ form.addEventListener("submit", function (ev) {
     return;
   }
 
-  console.log({
+  addTransactionToDOM({
     amount,
     description,
     category,
   });
-});
 
-const selectDetails = document.querySelector(".select");
-const categoryOptions = document.querySelectorAll('input[name="category"]');
+  form.reset();
+});
 
 categoryOptions.forEach(function (radio) {
   radio.addEventListener("click", function () {
     selectDetails.removeAttribute("open");
   });
 });
+
+function addTransactionToDOM(transactionData) {
+  const li = document.createElement("li");
+  li.classList.add("tx-list__item");
+
+  li.innerHTML = `
+    <article class="tx-row tx-row--pending">
+      <h3 class="tx-row__desc"></h3>
+      <time class="tx-row__date"></time>
+      <p class="tx-row__category"></p>
+      <p class="tx-row__amount"></p>
+      <div class="tx-row__status">
+        <span class="badge badge--pending">Pendente</span>
+      </div>
+    </article>
+  `;
+
+  li.querySelector(".tx-row__desc").textContent = transactionData.description;
+
+  li.querySelector(".tx-row__category").textContent = transactionData.category;
+
+  li.querySelector(".tx-row__amount").textContent =
+    "R$ " + transactionData.amount;
+
+  const today = new Date().toLocaleDateString("pt-BR");
+
+  li.querySelector(".tx-row__date").textContent = today;
+
+  transactionList.prepend(li);
+}
