@@ -54,6 +54,7 @@ const modalTitle = document.getElementById("modal-title");
 const modalDesc = document.getElementById("modal-desc");
 const btnCancel = document.getElementById("btn-cancel-delete");
 const btnConfirm = document.getElementById("btn-confirm-delete");
+const archiveButton = document.querySelector(".icon-btn--archive");
 
 form.addEventListener("submit", function (ev) {
   ev.preventDefault();
@@ -89,7 +90,14 @@ form.addEventListener("submit", function (ev) {
   }
 
   if (amount === "" || category === "" || description === "") {
-    alert("Por favor, preencha todos os campos da despesa!");
+    modalTitle.textContent = "Campos Obrigatórios";
+    modalDesc.textContent = "Por favor, preencha o valor, a descrição e a categoria antes de continuar.";
+
+    btnConfirm.style.display = "none";
+
+    btnCancel.textContent = "Entendi";
+
+    modalOverlay.classList.remove("hidden");
     return;
   }
 
@@ -205,8 +213,6 @@ transactionList.addEventListener("click", function (ev) {
 });
 
 btnCancel.addEventListener("click", function () {
-  console.log("Cancelando...");
-
   modalOverlay.classList.add("hidden");
 
   itemToDelete = null;
@@ -218,4 +224,41 @@ btnConfirm.addEventListener("click", function () {
     itemToDelete = null;
   }
   modalOverlay.classList.add("hidden");
+});
+
+archiveButton.addEventListener("click", function () {
+  const currentRecents = Array.from(
+    document.querySelectorAll(".tx-list__item:not(.tx-list__item--archived)")
+  );
+
+  if (currentRecents.length < 5) {
+    modalTitle.textContent = "Arquivamento Bloqueado";
+    modalDesc.textContent = `Você precisa completar 5 solicitações na aba Recentes para arquivar. Faltam ${
+      5 - currentRecents.length
+    } itens.`;
+
+    btnConfirm.style.display = "none";
+
+    btnCancel.textContent = "Entendi";
+
+    modalOverlay.classList.remove("hidden");
+    return;
+  }
+
+  currentRecents.forEach((item) => {
+    item.classList.add("tx-list__item--archived");
+  });
+
+  const allArchived = document.querySelectorAll(".tx-list__item--archived");
+
+  if (allArchived.length > 5) {
+    for (let i = allArchived.length - 1; i >= 5; i--) {
+      allArchived[i].remove();
+    }
+  }
+
+  const activeTab = document.querySelector(".tabs__tab--active");
+  if (activeTab) {
+    activeTab.click();
+  }
 });
